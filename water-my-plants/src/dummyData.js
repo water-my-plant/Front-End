@@ -8,5 +8,20 @@ export const plants = [
     name: "Small Window Cactus",
     species: "barrel cactus",
     schedule: "once a month"
+  },
+  {
+    name: "Small Window Cactus",
+    species: "barrel cactus",
+    schedule: "once a month"
+  },
+  {
+    name: "Small Window Cactus",
+    species: "barrel cactus",
+    schedule: "once a month"
+  },
+  {
+    name: "Small Window Cactus",
+    species: "barrel cactus",
+    schedule: "once a month"
   }
 ];

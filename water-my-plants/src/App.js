@@ -1,8 +1,8 @@
 import React from "react";
-import "./App.css";
+import { Route } from "react-router-dom";
 import Home from "./components/Home";
 import NewPlant from "./components/Plants";
-import { Route } from "react-router-dom";
+
 
 function App() {
   return (
