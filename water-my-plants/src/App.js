@@ -1,9 +1,12 @@
 import React from "react";
+import { Route } from "react-router-dom";
+
 import "./App.css";
-import Home from "./components/Home";
+
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
-import { Route } from "react-router-dom";
+import Home from "./components/Home";
+import NewPlant from "./components/Plants";
 
 function App() {
   return (
@@ -11,6 +14,7 @@ function App() {
       <Route path="/signup" component={SignUp} />
       <Route path="/login" component={Login} />
       <Route path="/home" component={Home} />
+      <Route path="/plants" component={NewPlant}></Route>
     </div>
   );
 }
