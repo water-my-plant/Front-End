@@ -23,6 +23,12 @@ const PlantForm = styled(Form)`
 const NewPlant = ({ errors, touched, status }) => {
   const [newPlant, addNewPlant] = useState([]);
 
+  useEffect(() => {
+    if (status) {
+      addNewPlant([...newPlant, status]);
+    }
+  }, [newPlant, status]);
+
   return (
     <PlantForm>
       {touched.plant && errors.plant && <p className="error">{errors.plant}</p>}
