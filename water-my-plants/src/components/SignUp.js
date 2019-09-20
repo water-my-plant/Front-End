@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
 import { withFormik, Form, Field} from 'formik'
 import * as yup from 'yup'
 import axios from 'axios'
@@ -20,6 +21,7 @@ const FormDiv = styled(Form)`
 `
 const Heading = styled.h1`
     color: #595959;
+    text-align: center;
 `
 const Input = styled(Field)`
     margin: 1rem auto;
@@ -32,12 +34,17 @@ const Input = styled(Field)`
 const Label = styled.label`
     margin: 1rem auto;
 `
-const Button = styled.button`
+const Button = styled(NavLink)`
     width: 30%;
     height: 2.5rem;
     margin: .5rem auto;
     border-radius: .5rem;
     font-size: 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #595959;
+    color: #595959;
+    padding-top: .5rem;
     color: #595959;
     &:hover {
         cursor: pointer;
@@ -79,7 +86,7 @@ const SignUp = (props) => {
                 <Field type='checkbox' name='termsOfService' checked={values.termsOfService} />
                 <span>Terms of Service</span>
             </Label>
-            <Button type='submit'>Sign Up</Button>
+            <Button type='submit' to='/home'>Sign Up</Button>
         </FormDiv>
     )
 }

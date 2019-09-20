@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
 import { withFormik, Form, Field} from 'formik'
 import * as yup from 'yup'
 import axios from 'axios'
@@ -20,6 +21,7 @@ const FormDiv = styled(Form)`
 `
 const Heading = styled.h1`
     color: #595959;
+    text-align: center;
 `
 const Input = styled(Field)`
     margin: 1rem auto;
@@ -32,13 +34,17 @@ const Input = styled(Field)`
 const Label = styled.label`
     margin: 1rem auto;
 `
-const Button = styled.button`
+const Button = styled(NavLink)`
     width: 30%;
     height: 2.5rem;
     margin: .5rem auto;
     border-radius: .5rem;
     font-size: 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #595959;
     color: #595959;
+    padding-top: .5rem;
     &:hover {
         cursor: pointer;
         background: #595959;
@@ -52,15 +58,22 @@ const Error = styled.p`
     z-index: 3;
 `
 const Pot = styled.div`
-    position: absolute;
     width: 70px;
     height: 0;
+    margin: 13rem auto;
     border-left: 12px solid transparent;
     border-right: 12px solid transparent;        
     border-top: 60px solid #FF7043;
-    bottom: 5rem;
-    left: 20rem;
     z-index: 2;
+`
+const WaterJar = styled.div`
+    width: 40px;
+    height: 55px;
+    background-color: #c5f;
+    border-radius: 5px;
+    opacity: 0;
+    box-shadow: inset -9px 0 15px #cc70ff;
+    animation: show 10s linear;
 `
 
 const Login = (props) => {
@@ -76,9 +89,10 @@ const Login = (props) => {
             {touched.password && errors.password && <Error>{errors.password}</Error>}
             <Input type='text' name='password' placeholder='password' />
 
-            <Button type='submit'>Login</Button>
+            <Button type='submit' to='/home'>Login</Button>
 
             <Pot></Pot>
+            <WaterJar></WaterJar>
         </FormDiv>
     )
 }
