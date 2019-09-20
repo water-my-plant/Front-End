@@ -5,11 +5,26 @@ import axios from "axios";
 import { withFormik, Form, Field } from "formik";
 import * as yup from "yup";
 
+const PlantForm = styled(Form)`
+  margin: 30px 20px 0 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  height: 350px;
+  width: 350px;
+  background-color: rgba(255, 250, 250, 0.8);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease-in;
+  &:hover {
+    color: white;
+    background-color: black;
+  }
+`;
+
 const NewPlant = ({ errors, touched, status }) => {
   const [newPlant, addNewPlant] = useState([]);
 
   return (
-    <Form>
+    <PlantForm>
       {touched.plant && errors.plant && <p className="error">{errors.plant}</p>}
       <Field type="text" name="plant" placeholder="Plant Name" />
 
@@ -22,7 +37,7 @@ const NewPlant = ({ errors, touched, status }) => {
       <Field type="text" name="water" placeholder="Water Schedule" />
 
       <button>Submit!</button>
-    </Form>
+    </PlantForm>
   );
 };
 
