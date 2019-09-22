@@ -20,24 +20,55 @@ const PlantForm = styled(Form)`
   }
 `;
 
+const FieldInput = styled(Field)`
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 5px;
+  margin: 5px;
+`;
+
+const Button = styled.button`
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  padding: 5px;
+  margin: 5px;
+`;
+
 const NewPlant = ({ errors, touched, status }) => {
   const [newPlant, addNewPlant] = useState([]);
 
+  useEffect(() => {
+    if (status) {
+      addNewPlant([...newPlant, status]);
+    }
+  }, [newPlant, status]);
+
   return (
-    <PlantForm>
-      {touched.plant && errors.plant && <p className="error">{errors.plant}</p>}
-      <Field type="text" name="plant" placeholder="Plant Name" />
+    <>
+      <PlantForm>
+        <h1>Add a Plant!</h1>
+        {touched.plant && errors.plant && (
+          <p className="error">{errors.plant}</p>
+        )}
+        <FieldInput type="text" name="plant" placeholder="Plant Name" />
 
-      {touched.species && errors.species && (
-        <p className="error">{errors.species}</p>
-      )}
-      <Field type="text" name="species" placeholder="Species" />
+        {touched.species && errors.species && (
+          <p className="error">{errors.species}</p>
+        )}
+        <FieldInput type="text" name="species" placeholder="Species" />
 
-      {touched.water && errors.water && <p className="error">{errors.water}</p>}
-      <Field type="text" name="water" placeholder="Water Schedule" />
+        {touched.water && errors.water && (
+          <p className="error">{errors.water}</p>
+        )}
+        <FieldInput type="text" name="water" placeholder="Water Schedule" />
 
-      <button>Submit!</button>
-    </PlantForm>
+        <Button>Submit!</Button>
+      </PlantForm>
+    </>
   );
 };
 
@@ -52,7 +83,7 @@ export default withFormik({
   validationSchema: yup.object().shape({
     plant: yup.string().required("Add plant name"),
     species: yup.string().required("What's it's species?"),
-    water: yup.string().required("Diet is required")
+    water: yup.string().required("Make a Schedule!")
   }),
   handleSubmit: (values, { setStatus }) => {
     axios
