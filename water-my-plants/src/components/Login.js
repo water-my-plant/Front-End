@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { withFormik, Form, Field} from 'formik'
 import * as yup from 'yup'
@@ -9,7 +9,7 @@ const FormDiv = styled(Form)`
     display: flex;
     flex-direction: column;
     width: 70%;
-    height: 40rem;
+    padding-bottom: 1rem;
     border: 1px solid black;
     border-radius: .5rem;
     margin: 5rem auto; 
@@ -34,7 +34,7 @@ const Input = styled(Field)`
 const Label = styled.label`
     margin: 1rem auto;
 `
-const Button = styled(NavLink)`
+const Button = styled.button`
     width: 30%;
     height: 2.5rem;
     margin: .5rem auto;
@@ -45,6 +45,7 @@ const Button = styled(NavLink)`
     border: 1px solid #595959;
     color: #595959;
     padding-top: .5rem;
+    padding-bottom: .5rem;
     &:hover {
         cursor: pointer;
         background: #595959;
@@ -57,27 +58,9 @@ const Error = styled.p`
     margin-top: -.12rem;
     z-index: 3;
 `
-const Pot = styled.div`
-    width: 70px;
-    height: 0;
-    margin: 13rem auto;
-    border-left: 12px solid transparent;
-    border-right: 12px solid transparent;        
-    border-top: 60px solid #FF7043;
-    z-index: 2;
-`
-const WaterJar = styled.div`
-    width: 40px;
-    height: 55px;
-    background-color: #c5f;
-    border-radius: 5px;
-    opacity: 0;
-    box-shadow: inset -9px 0 15px #cc70ff;
-    animation: show 10s linear;
-`
 
 const Login = (props) => {
-    const { errors, touched, status, values } = props
+    const { errors, touched } = props
 
     return (
         <FormDiv>
@@ -89,10 +72,7 @@ const Login = (props) => {
             {touched.password && errors.password && <Error>{errors.password}</Error>}
             <Input type='text' name='password' placeholder='password' />
 
-            <Button type='submit' to='/home'>Login</Button>
-
-            <Pot></Pot>
-            <WaterJar></WaterJar>
+            <Button type='submit'>Login</Button>
         </FormDiv>
     )
 }
@@ -110,8 +90,17 @@ export default withFormik({
     }),
     validateOnChange: false,
     validateOnBlur: false,
-    handleSubmit: (values, { setStatus, resetForm }) => {
+    handleSubmit: (values, { resetForm }) => {
         console.log(values)
-        return resetForm()
+        axios.post('https://water-my-plant-bw.herokuapp.com/api/auth/login/', values)
+            .then(res => {
+                console.log(res.data)
+                localStorage.setItem("token", res.data.token)
+                return resetForm()
+            })
+            .catch(err => {
+                console.log(err.response)
+                return err.response
+            })
     }
 })(Login)

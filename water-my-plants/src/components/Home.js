@@ -1,8 +1,8 @@
 // list of plants
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-// import axios from "axios";
+import axios from "axios";
 
 import PlantCard from "./PlantCard";
 
@@ -21,13 +21,13 @@ const FlexContainer = styled.div`
 export default function Home() {
   const [data, setData] = useState(plants);
 
-  // get plant data from database
+  // // get plant data from database
   //   useEffect(() => {
   //     axios
-  //       .get(``)
+  //       .get(`https://water-my-plant-bw.herokuapp.com/api/users`)
   //       .then(response => {
   //         console.log(response.data.results);
-  //         // setData(response.data.results);
+  //         setData(response.data.results);
   //       })
   //       .catch(error => {
   //         console.log(error);
