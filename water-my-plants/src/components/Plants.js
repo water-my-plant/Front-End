@@ -5,37 +5,59 @@ import axios from "axios";
 import { withFormik, Form, Field } from "formik";
 import * as yup from "yup";
 
+const Body = styled.body`
+  background-color: 
+  width: 100%;
+  height: 100%;
+`;
+
 const PlantForm = styled(Form)`
-  margin: 30px 20px 0 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  margin: 100px auto 50px;
   border: 1px solid black;
   border-radius: 10px;
-  height: 350px;
-  width: 350px;
+  text-align: left;
+  width: 430px;
+  height: 430px;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
   background-color: rgba(255, 250, 250, 0.8);
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.6);
   transition: all 0.3s ease-in;
   &:hover {
     color: white;
-    background-color: black;
+    background-color: #666633;
   }
 `;
 
 const FieldInput = styled(Field)`
-  width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  padding: 5px;
-  margin: 5px;
+  margin-top: 32px;
+  padding: 0.5rem;
+  width: 95%;
+  display: block;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 `;
 
 const Button = styled.button`
-  width: 100%;
+  max-width: 150px;
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;
-  padding: 5px;
-  margin: 5px;
+  align-items: center;
+  border-style: none;
+  border-radius: 10px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+  padding: 12px 20px;
+  margin: 32px 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: #fff;
+  background-color: #d4d4aa;
 `;
 
 const NewPlant = ({ errors, touched, status }) => {
@@ -48,7 +70,7 @@ const NewPlant = ({ errors, touched, status }) => {
   }, [newPlant, status]);
 
   return (
-    <>
+    <Body>
       <PlantForm>
         <h1>Add a Plant!</h1>
         {touched.plant && errors.plant && (
@@ -68,7 +90,7 @@ const NewPlant = ({ errors, touched, status }) => {
 
         <Button>Submit!</Button>
       </PlantForm>
-    </>
+    </Body>
   );
 };
 
