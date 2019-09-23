@@ -87,7 +87,7 @@ export default withFormik({
   }),
   handleSubmit: (values, { setStatus }) => {
     axios
-      .post("", values)
+      .post("https://water-my-plant-bw.herokuapp.com/api/plants", values)
       .then(response => {
         setStatus(response.data);
       })
