@@ -90,13 +90,13 @@ export default withFormik({
     }),
     validateOnChange: false,
     validateOnBlur: false,
-    handleSubmit: (values, { resetForm }) => {
-        console.log(values)
+    handleSubmit: (values, { props, resetForm }) => {
         axios.post('https://water-my-plant-bw.herokuapp.com/api/auth/login/', values)
             .then(res => {
                 console.log(res.data)
                 localStorage.setItem("token", res.data.token)
-                return resetForm()
+                resetForm()
+                return props.history.push('/home')
             })
             .catch(err => {
                 console.log(err.response)

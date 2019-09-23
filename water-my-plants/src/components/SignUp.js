@@ -111,7 +111,7 @@ export default withFormik({
     }),
     validateOnChange: false,
     validateOnBlur: false,
-    handleSubmit: (values, { setStatus, resetForm }) => {
+    handleSubmit: (values, { props, resetForm }) => {
         let userObj = {
             "fullname": values.fullname,
             "username": values.username,
@@ -121,7 +121,8 @@ export default withFormik({
         axios.post('https://water-my-plant-bw.herokuapp.com/api/auth/register', userObj)
             .then(res => {
                 console.log(res.data)
-                return resetForm()
+                resetForm()
+                return props.history.push('/home')
             })
             .catch(err => {
                 console.log(err.response)
