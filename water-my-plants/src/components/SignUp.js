@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { withFormik, Form, Field} from 'formik'
 import * as yup from 'yup'
 import axios from 'axios'
@@ -8,7 +8,7 @@ const FormDiv = styled(Form)`
     display: flex;
     flex-direction: column;
     width: 70%;
-    height: 40rem;
+    padding-bottom: 1rem;
     border: 1px solid black;
     border-radius: .5rem;
     margin: 5rem auto; 
@@ -20,6 +20,7 @@ const FormDiv = styled(Form)`
 `
 const Heading = styled.h1`
     color: #595959;
+    text-align: center;
 `
 const Input = styled(Field)`
     margin: 1rem auto;
@@ -38,11 +39,16 @@ const Button = styled.button`
     margin: .5rem auto;
     border-radius: .5rem;
     font-size: 1.5rem;
-    color: #595959;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #595959;
+    background-color: #595959;
+    color: #d4d4aa;
+    padding-top: .5rem;
     &:hover {
         cursor: pointer;
-        background: #595959;
-        color: #d4d4aa;
+        background: #d4d4aa;
+        color: #595959;
     }
 `
 const Error = styled.p`
@@ -53,8 +59,7 @@ const Error = styled.p`
 `
 
 const SignUp = (props) => {
-    const { errors, touched, status, values } = props
-    console.log('submitted ', values)
+    const { errors, touched, values } = props
     return (
         <FormDiv>
             <Heading>Sign Up for Water My Plants</Heading>
@@ -65,8 +70,8 @@ const SignUp = (props) => {
             {touched.username && errors.username && <Error>{errors.username}</Error>}
             <Input type='text' name='username' placeholder='username' />
 
-            {touched.phoneNumber && errors.phoneNumber && <Error>{errors.phoneNumber}</Error>}
-            <Input type='text' name='phoneNumber' placeholder='phone number' />
+            {touched.phonenumber && errors.phonenumber && <Error>{errors.phonenumber}</Error>}
+            <Input type='text' name='phonenumber' placeholder='phone number' />
 
             {touched.password && errors.password && <Error>{errors.password}</Error>}
             <Input type='text' name='password' placeholder='password' />
@@ -91,7 +96,7 @@ export default withFormik({
             username: values.username || '',
             password: values.password || '',
             password2: values.password2 || '',
-            phoneNumber: values.phoneNumber || '',
+            phonenumber: values.phonenumber || '',
             termsOfService: values.termsOfService || false
         }
     },
@@ -100,13 +105,26 @@ export default withFormik({
         username: yup.string().min(5, 'your username must have at least 5 characters').required(),
         password: yup.string().min(8, 'password must be at least 8 characters').required('enter and confirm password'),
         password2: yup.string().oneOf([yup.ref('password'), null, 'passwords must match']).required(),
-        phoneNumber: yup.number().positive().required(),
+        phonenumber: yup.number().positive().required(),
         termsOfService: yup.boolean().oneOf([true, 'you must agree to the terms of service']).required()
     }),
     validateOnChange: false,
     validateOnBlur: false,
-    handleSubmit: (values, { setStatus, resetForm }) => {
-        console.log(values)
-        return resetForm()
+    handleSubmit: (values, { props, resetForm }) => {
+        let userObj = {
+            "fullname": values.fullname,
+            "username": values.username,
+            "password": values.password,
+            "phonenumber": values.phonenumber
+        }
+        axios.post('https://water-my-plant-bw.herokuapp.com/api/auth/register', userObj)
+            .then(res => {
+                // localStorage.setItem(res.data.token)
+                resetForm()
+                return props.history.push('/home')
+            })
+            .catch(err => {
+                return err.response
+            })
     }
 })(SignUp)

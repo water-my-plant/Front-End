@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { withFormik, Form, Field} from 'formik'
 import * as yup from 'yup'
 import axios from 'axios'
@@ -8,7 +8,7 @@ const FormDiv = styled(Form)`
     display: flex;
     flex-direction: column;
     width: 70%;
-    height: 40rem;
+    padding-bottom: 1rem;
     border: 1px solid black;
     border-radius: .5rem;
     margin: 5rem auto; 
@@ -20,6 +20,7 @@ const FormDiv = styled(Form)`
 `
 const Heading = styled.h1`
     color: #595959;
+    text-align: center;
 `
 const Input = styled(Field)`
     margin: 1rem auto;
@@ -38,7 +39,12 @@ const Button = styled.button`
     margin: .5rem auto;
     border-radius: .5rem;
     font-size: 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #595959;
     color: #595959;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
     &:hover {
         cursor: pointer;
         background: #595959;
@@ -51,20 +57,9 @@ const Error = styled.p`
     margin-top: -.12rem;
     z-index: 3;
 `
-const Pot = styled.div`
-    position: absolute;
-    width: 70px;
-    height: 0;
-    border-left: 12px solid transparent;
-    border-right: 12px solid transparent;        
-    border-top: 60px solid #FF7043;
-    bottom: 5rem;
-    left: 20rem;
-    z-index: 2;
-`
 
 const Login = (props) => {
-    const { errors, touched, status, values } = props
+    const { errors, touched } = props
 
     return (
         <FormDiv>
@@ -77,8 +72,6 @@ const Login = (props) => {
             <Input type='text' name='password' placeholder='password' />
 
             <Button type='submit'>Login</Button>
-
-            <Pot></Pot>
         </FormDiv>
     )
 }
@@ -96,8 +89,15 @@ export default withFormik({
     }),
     validateOnChange: false,
     validateOnBlur: false,
-    handleSubmit: (values, { setStatus, resetForm }) => {
-        console.log(values)
-        return resetForm()
+    handleSubmit: (values, { props, resetForm }) => {
+        axios.post('https://water-my-plant-bw.herokuapp.com/api/auth/login/', values)
+            .then(res => {
+                localStorage.setItem("token", res.data.token)
+                resetForm()
+                return props.history.push('/home')
+            })
+            .catch(err => {
+                return err.response
+            })
     }
 })(Login)

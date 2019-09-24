@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import * as decode from 'jwt-decode'
 import styled from "styled-components";
-
 import Nav from "./components/Nav.js";
 
 import SignUp from "./components/SignUp";
@@ -15,6 +15,10 @@ const Content = styled.div`
 `;
 
 function App() {
+  const token = localStorage.getItem('token')
+  const expired = decode(token).exp < Date.now()/1000
+  console.log(expired)
+
   return (
     <div className="App">
       <Nav />
