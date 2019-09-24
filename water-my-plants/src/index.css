@@ -1,5 +1,4 @@
 * {
-<<<<<<< HEAD
   box-sizing: border-box;
 }
 
@@ -14,20 +13,4 @@ body {
 
 .active {
   color: #D4D4AA;
-=======
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Roboto', sans-serif;
-}
-
-.item {
-    color          : #fff;
-    text-decoration: none;
-}
-
-.active {
-    color: #D4D4AA;
->>>>>>> d15720a459c0c58cca86f3a9ba2c631ca8d4f844
 }

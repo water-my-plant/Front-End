@@ -1,16 +1,8 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { withFormik, Form, Field } from 'formik';
 import * as yup from 'yup';
-=======
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import axios from "axios";
-import { withFormik, Form, Field } from "formik";
-import * as yup from "yup";
->>>>>>> d15720a459c0c58cca86f3a9ba2c631ca8d4f844
 
 const Body = styled.div`
   background-color: black;
@@ -19,13 +11,8 @@ const Body = styled.div`
 `;
 
 const PlantForm = styled(Form)`
-<<<<<<< HEAD
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-=======
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
->>>>>>> d15720a459c0c58cca86f3a9ba2c631ca8d4f844
   margin: 100px auto 50px;
   border: 1px solid black;
   border-radius: 10px;
@@ -105,15 +92,9 @@ const UpdatePlant = ({ errors, touched, status }) => {
 export default withFormik({
   mapPropsToValues: values => {
     return {
-<<<<<<< HEAD
       plant: values.plant || '',
       species: values.species || '',
       water: values.water || ''
-=======
-      plant: values.plant || "",
-      species: values.species || "",
-      water: values.water || ""
->>>>>>> d15720a459c0c58cca86f3a9ba2c631ca8d4f844
     };
   },
   validationSchema: yup.object().shape({
@@ -123,20 +104,12 @@ export default withFormik({
   }),
   handleSubmit: (values, { setStatus }) => {
     axios
-<<<<<<< HEAD
       .put('https://water-my-plant-bw.herokuapp.com/api/plants', values)
-=======
-      .put("https://water-my-plant-bw.herokuapp.com/api/plants", values)
->>>>>>> d15720a459c0c58cca86f3a9ba2c631ca8d4f844
       .then(response => {
         setStatus(response.data);
       })
       .catch(error => {
-<<<<<<< HEAD
         console.log('Error:', error);
-=======
-        console.log("Error:", error);
->>>>>>> d15720a459c0c58cca86f3a9ba2c631ca8d4f844
       });
   }
 })(UpdatePlant);

@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-=======
-import React from "react";
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
->>>>>>> d15720a459c0c58cca86f3a9ba2c631ca8d4f844
 
 const NavBar = styled.nav`
   position: fixed;
