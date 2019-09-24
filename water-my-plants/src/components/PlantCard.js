@@ -1,15 +1,27 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import Icon from '@material-ui/core/Icon';
 
 const Card = styled.div`
-  width: 300px;
-  margin: 20px;
+  text-align: center;
+  width: 90%;
+  margin: 3rem auto;
   padding: 10px;
-  background-color: #666633;
-  color: #fff;
-  border-radius: 5px;
-  @media (max-width: 500px) {
-    width: 90%;
+  background-color: #d4d4aa;
+  color: #000;
+  transition: all 0.3s ease-in;
+  &:hover {
+    background-color: #666633;
+    color: #fff;
+  }
+`;
+
+const FlexContainer = styled.div`
+  @media (min-width: 600px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
   }
 `;
 
@@ -18,27 +30,72 @@ const PlantName = styled.h3`
   margin: 0 0 10px 0;
 `;
 
+const Info = styled.div`
+  margin: 20px 1%;
+  text-align: center;
+  line-height: 1rem;
+`;
+
 const Species = styled.h3`
+  font-size: 0.75rem;
+  font-weight: 700;
+  opacity: 0.5;
+  text-transform: uppercase;
+  margin: 0;
+`;
+
+const SpeciesName = styled.span`
   font-size: 1.17rem;
-  margin: 0 0 5px 0;
+  font-weight: 500;
   font-style: italic;
-  color: ;
+  text-transform: none;
 `;
 
 const Schedule = styled.h3`
+  font-size: 0.75rem;
+  font-weight: 700;
+  opacity: 0.5;
+  text-transform: uppercase;
+  margin: 0;
+`;
+
+const ScheduleTiming = styled.span`
   font-size: 1.17rem;
-  margin: 0 0 10px 0;
+  font-weight: 500;
+  font-style: italic;
+  text-transform: none;
+`;
+
+const Button = styled.button`
+  border: none;
+  border-radius: 50%;
+  margin: 10px 10px 20px;
+  padding: 10px;
+  background-color: #fff;
+  transition: all 0.3s ease-in;
+  &:hover {
+    background-color: #000;
+    color: #fff;
+  }
 `;
 
 export default function PlantCard(props) {
   return (
     <Card>
       <PlantName>{props.name}</PlantName>
-      <Species>{props.species}</Species>
-      <Schedule>Watering schedule: {props.schedule}</Schedule>
-      <button value={props.value} onClick={props.removePlant}>
-        Delete
-      </button>
+      <FlexContainer>
+        <Info>
+          <SpeciesName>{props.species}</SpeciesName>
+          <Species>Species</Species>
+        </Info>
+        <Info>
+          <ScheduleTiming>{props.schedule}</ScheduleTiming>
+          <Schedule>Watering schedule</Schedule>
+        </Info>
+        <Button value={props.value} onClick={props.handleDelete}>
+          <Icon value={props.value}>delete</Icon>
+        </Button>
+      </FlexContainer>
     </Card>
   );
 }
