@@ -5,8 +5,8 @@ import axios from "axios";
 import { withFormik, Form, Field } from "formik";
 import * as yup from "yup";
 
-const Body = styled.body`
-  background-color: 
+const Body = styled.div`
+  background-color: black;
   width: 100%;
   height: 100%;
 `;
@@ -19,9 +19,8 @@ const PlantForm = styled(Form)`
   border-radius: 10px;
   text-align: left;
   width: 430px;
-  height: 430px;
   display: flex;
-  flex-flow: column wrap;
+  flex-direction: column;
   align-items: center;
   background-color: rgba(255, 250, 250, 0.8);
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.6);
@@ -34,8 +33,8 @@ const PlantForm = styled(Form)`
 
 const FieldInput = styled(Field)`
   margin-top: 32px;
-  padding: 0.5rem;
-  width: 95%;
+  padding: 0.8rem;
+  width: 90%;
   display: block;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -44,10 +43,7 @@ const FieldInput = styled(Field)`
 
 const Button = styled.button`
   max-width: 150px;
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: space-between;
-  align-items: center;
+  text-align: center;
   border-style: none;
   border-radius: 10px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
