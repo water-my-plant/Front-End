@@ -5,6 +5,12 @@ import axios from 'axios';
 import { withFormik, Form, Field } from 'formik';
 import * as yup from 'yup';
 
+const Body = styled.div`
+  background-color: black;
+  width: 100%;
+  height: 100%;
+`;
+
 const PlantForm = styled(Form)`
   display: flex;
   flex-direction: column;
