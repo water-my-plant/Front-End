@@ -1,4 +1,3 @@
-// create watering schedule
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
@@ -56,7 +55,7 @@ const Button = styled.button`
   background-color: #d4d4aa;
 `;
 
-const NewPlant = ({ errors, touched, status }) => {
+const UpdatePlant = ({ errors, touched, status }) => {
   const [newPlant, addNewPlant] = useState([]);
 
   useEffect(() => {
@@ -99,13 +98,13 @@ export default withFormik({
     };
   },
   validationSchema: yup.object().shape({
-    plant: yup.string().required("Add plant name"),
-    species: yup.string().required("What's it's species?"),
-    water: yup.string().required("Make a Schedule!")
+    plant: yup.string(),
+    species: yup.string(),
+    water: yup.string()
   }),
   handleSubmit: (values, { setStatus }) => {
     axios
-      .post("https://water-my-plant-bw.herokuapp.com/api/plants", values)
+      .put("https://water-my-plant-bw.herokuapp.com/api/plants", values)
       .then(response => {
         setStatus(response.data);
       })
@@ -113,4 +112,4 @@ export default withFormik({
         console.log("Error:", error);
       });
   }
-})(NewPlant);
+})(UpdatePlant);

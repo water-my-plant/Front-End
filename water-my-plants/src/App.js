@@ -5,6 +5,7 @@ import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import NewPlant from "./components/Plants";
+import UpdatePlant from "./components/UpdatePlant";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/login" component={Login} />
       <Route path="/home" component={Home} />
       <Route path="/plants" component={NewPlant}></Route>
+      <Route path="/updateplant" component={UpdatePlant}></Route>
     </div>
   );
 }
