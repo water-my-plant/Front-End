@@ -1,19 +1,19 @@
 // list of plants
 
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import axios from 'axios';
 
-import PlantCard from "./PlantCard";
+import PlantCard from './PlantCard';
 
 const HomeHeader = styled.h1`
   font-size: 3rem;
+  font-weight: 300;
   text-align: center;
 `;
 
 export default function Home() {
   const [data, setData] = useState([]);
-
   // get plant data from database
   useEffect(() => {
     axios
@@ -27,24 +27,34 @@ export default function Home() {
       });
   }, []);
 
-  const removePlant = event => {
-    console.log("delete", event.target.value);
+  const handleDelete = event => {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log(event.target.value);
+    // axios
+    //   .delete(
+    //     `https://water-my-plant-bw.herokuapp.com/api/plants/${event.target.value}`
+    //   )
+    //   .then(response => {
+    //     console.log(response.data);
+    //     setData(response.data);
+    //   }).catch(error => {
+    //   console.log(error);
+    // });
   };
-
-  // const currentPlant = plants.filter((_, index) => index !== todoIndex);
 
   return (
     <div>
       <HomeHeader>My Plants</HomeHeader>
-      {data.map((plant, id) => {
+      {data.map(plant => {
         return (
           <PlantCard
-            value={id}
-            key={id}
+            value={plant.id}
+            key={plant.id}
             name={plant.plant_name}
             species={plant.plant_species}
-            schedule={plant.schedule}
-            removePlant={removePlant}
+            schedule={plant.users_id}
+            handleDelete={handleDelete}
           />
         );
       })}

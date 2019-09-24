@@ -1,7 +1,16 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
+}
+
+.item {
+  color          : #fff;
+  text-decoration: none;
+}
+
+.active {
+  color: #D4D4AA;
 }
