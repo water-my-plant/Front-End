@@ -17,10 +17,12 @@ const Card = styled.div`
 `;
 
 const FlexContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  @media (min-width: 600px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
 `;
 
 const PlantName = styled.h3`
@@ -29,20 +31,39 @@ const PlantName = styled.h3`
 `;
 
 const Info = styled.div`
-width: 
-  margin: 10px;
-  text-align: left;
+  margin: 20px 1%;
+  text-align: center;
+  line-height: 1rem;
 `;
 
 const Species = styled.h3`
+  font-size: 0.75rem;
+  font-weight: 700;
+  opacity: 0.5;
+  text-transform: uppercase;
+  margin: 0;
+`;
+
+const SpeciesName = styled.span`
   font-size: 1.17rem;
-  margin: 0 0 5px 0;
+  font-weight: 500;
   font-style: italic;
+  text-transform: none;
 `;
 
 const Schedule = styled.h3`
+  font-size: 0.75rem;
+  font-weight: 700;
+  opacity: 0.5;
+  text-transform: uppercase;
+  margin: 0;
+`;
+
+const ScheduleTiming = styled.span`
   font-size: 1.17rem;
-  margin: 0 0 10px 0;
+  font-weight: 500;
+  font-style: italic;
+  text-transform: none;
 `;
 
 const Button = styled.button`
@@ -64,10 +85,14 @@ export default function PlantCard(props) {
       <PlantName>{props.name}</PlantName>
       <FlexContainer>
         <Info>
-          <Species>{props.species}</Species>
-          <Schedule>Watering schedule: {props.schedule}</Schedule>
+          <SpeciesName>{props.species}</SpeciesName>
+          <Species>Species</Species>
         </Info>
-        <Button value={props.value} onClick={props.removePlant}>
+        <Info>
+          <ScheduleTiming>{props.schedule}</ScheduleTiming>
+          <Schedule>Watering schedule</Schedule>
+        </Info>
+        <Button>
           <Icon>delete</Icon>
         </Button>
       </FlexContainer>
