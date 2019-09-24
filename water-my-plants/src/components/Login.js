@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import { withFormik, Form, Field} from 'formik'
 import * as yup from 'yup'
 import axios from 'axios'
@@ -93,13 +92,11 @@ export default withFormik({
     handleSubmit: (values, { props, resetForm }) => {
         axios.post('https://water-my-plant-bw.herokuapp.com/api/auth/login/', values)
             .then(res => {
-                console.log(res.data)
                 localStorage.setItem("token", res.data.token)
                 resetForm()
                 return props.history.push('/home')
             })
             .catch(err => {
-                console.log(err.response)
                 return err.response
             })
     }
