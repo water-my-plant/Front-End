@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import axios from "axios";
-import { withFormik, Form, Field } from "formik";
-import * as yup from "yup";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import axios from 'axios';
+import { withFormik, Form, Field } from 'formik';
+import * as yup from 'yup';
 
 const Body = styled.div`
   background-color: black;
@@ -11,8 +11,8 @@ const Body = styled.div`
 `;
 
 const PlantForm = styled(Form)`
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   margin: 100px auto 50px;
   border: 1px solid black;
   border-radius: 10px;
@@ -92,9 +92,9 @@ const UpdatePlant = ({ errors, touched, status }) => {
 export default withFormik({
   mapPropsToValues: values => {
     return {
-      plant: values.plant || "",
-      species: values.species || "",
-      water: values.water || ""
+      plant: values.plant || '',
+      species: values.species || '',
+      water: values.water || ''
     };
   },
   validationSchema: yup.object().shape({
@@ -104,12 +104,12 @@ export default withFormik({
   }),
   handleSubmit: (values, { setStatus }) => {
     axios
-      .put("https://water-my-plant-bw.herokuapp.com/api/plants", values)
+      .put('https://water-my-plant-bw.herokuapp.com/api/plants', values)
       .then(response => {
         setStatus(response.data);
       })
       .catch(error => {
-        console.log("Error:", error);
+        console.log('Error:', error);
       });
   }
 })(UpdatePlant);

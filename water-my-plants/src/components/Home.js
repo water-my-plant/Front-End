@@ -1,10 +1,10 @@
 // list of plants
 
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import axios from 'axios';
 
-import PlantCard from "./PlantCard";
+import PlantCard from './PlantCard';
 
 const HomeHeader = styled.h1`
   font-size: 3rem;
@@ -27,16 +27,34 @@ export default function Home() {
       });
   }, []);
 
+  const handleDelete = event => {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log(event.target.value);
+    // axios
+    //   .delete(
+    //     `https://water-my-plant-bw.herokuapp.com/api/plants/${event.target.value}`
+    //   )
+    //   .then(response => {
+    //     console.log(response.data);
+    //     setData(response.data);
+    //   }).catch(error => {
+    //   console.log(error);
+    // });
+  };
+
   return (
     <div>
       <HomeHeader>My Plants</HomeHeader>
       {data.map(plant => {
         return (
           <PlantCard
+            value={plant.id}
             key={plant.id}
             name={plant.plant_name}
             species={plant.plant_species}
             schedule={plant.users_id}
+            handleDelete={handleDelete}
           />
         );
       })}

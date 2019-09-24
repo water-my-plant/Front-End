@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import Icon from "@material-ui/core/Icon";
+import React from 'react';
+import styled from 'styled-components';
+import Icon from '@material-ui/core/Icon';
 
 const Card = styled.div`
   text-align: center;
@@ -92,8 +92,8 @@ export default function PlantCard(props) {
           <ScheduleTiming>{props.schedule}</ScheduleTiming>
           <Schedule>Watering schedule</Schedule>
         </Info>
-        <Button>
-          <Icon>delete</Icon>
+        <Button value={props.value} onClick={props.handleDelete}>
+          <Icon value={props.value}>delete</Icon>
         </Button>
       </FlexContainer>
     </Card>
