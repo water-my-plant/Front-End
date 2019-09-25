@@ -10,14 +10,15 @@ import Home from "./components/Home";
 import UserProfile from "./components/UserProfile";
 import NewPlant from "./components/Plants";
 // import UpdatePlant from './components/UpdatePlant';
+import PrivateRoute from './components/PrivateRoute'
 
 const Content = styled.div`
   margin-top: 120px;
 `;
 
 function App() {
-  const token = localStorage.getItem("token");
-  const expired = decode(token).exp < Date.now() / 1000;
+  // const token = localStorage.getItem("token");
+  // const expired = decode(token).exp < Date.now() / 1000;
   // console.log(decode(token));
 
   return (
@@ -27,7 +28,7 @@ function App() {
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
         <Route path="/profile" component={UserProfile} />
-        <Route path="/home" component={Home} />
+        <PrivateRoute authenticated={true} path="/home" component={Home} />
         <Route path="/plants" component={NewPlant} />
       </Content>
     </div>
