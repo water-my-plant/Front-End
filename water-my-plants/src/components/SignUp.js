@@ -1,8 +1,8 @@
-import React from 'react';
-import { withFormik, Form, Field } from 'formik';
-import * as yup from 'yup';
-import axios from 'axios';
-import styled from 'styled-components';
+import React from "react";
+import { withFormik, Form, Field } from "formik";
+import * as yup from "yup";
+import axios from "axios";
+import styled from "styled-components";
 
 const FormDiv = styled(Form)`
   display: flex;
@@ -115,30 +115,30 @@ const SignUp = props => {
 export default withFormik({
   mapPropsToValues: values => {
     return {
-      fullname: values.fullname || '',
-      username: values.username || '',
-      password: values.password || '',
-      password2: values.password2 || '',
-      phonenumber: values.phonenumber || '',
+      fullname: values.fullname || "",
+      username: values.username || "",
+      password: values.password || "",
+      password2: values.password2 || "",
+      phonenumber: values.phonenumber || "",
       termsOfService: values.termsOfService || false
     };
   },
   validationSchema: yup.object().shape({
     fullname: yup
       .string()
-      .max(40, 'enter no more than 40 characters')
+      .max(40, "enter no more than 40 characters")
       .required(),
     username: yup
       .string()
-      .min(5, 'your username must have at least 5 characters')
+      .min(5, "your username must have at least 5 characters")
       .required(),
     password: yup
       .string()
-      .min(8, 'password must be at least 8 characters')
-      .required('enter and confirm password'),
+      .min(8, "password must be at least 8 characters")
+      .required("enter and confirm password"),
     password2: yup
       .string()
-      .oneOf([yup.ref('password'), null, 'passwords must match'])
+      .oneOf([yup.ref("password"), null, "passwords must match"])
       .required(),
     phonenumber: yup
       .number()
@@ -146,7 +146,7 @@ export default withFormik({
       .required(),
     termsOfService: yup
       .boolean()
-      .oneOf([true, 'you must agree to the terms of service'])
+      .oneOf([true, "you must agree to the terms of service"])
       .required()
   }),
   validateOnChange: false,
@@ -160,13 +160,13 @@ export default withFormik({
     };
     axios
       .post(
-        'https://water-my-plant-bw.herokuapp.com/api/auth/register',
+        "https://water-my-plant-bw.herokuapp.com/api/auth/register",
         userObj
       )
       .then(res => {
-        // localStorage.setItem(res.data.token)
+        localStorage.setItem("token", res.data.token);
         resetForm();
-        return props.history.push('/home');
+        return props.history.push("/home");
       })
       .catch(err => {
         return err.response;

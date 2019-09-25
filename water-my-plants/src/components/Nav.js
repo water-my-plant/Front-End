@@ -1,6 +1,6 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 
 const NavBar = styled.nav`
   position: fixed;
@@ -24,6 +24,9 @@ export default function Nav() {
       </NavLink>
       <NavLink to="/plants" className="item">
         Add A Plant
+      </NavLink>
+      <NavLink to="/profile" className="item">
+        Profile
       </NavLink>
       <NavLink to="/login" className="item">
         Log In
