@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import Icon from '@material-ui/core/Icon';
+import React from "react";
+import styled from "styled-components";
+import Icon from "@material-ui/core/Icon";
 
 const Card = styled.div`
   text-align: center;
@@ -31,7 +31,8 @@ const PlantName = styled.h3`
 `;
 
 const Info = styled.div`
-  margin: 20px 1%;
+  flex: 1;
+  margin: 20px 0;
   text-align: center;
   line-height: 1rem;
 `;
@@ -92,9 +93,11 @@ export default function PlantCard(props) {
           <ScheduleTiming>{props.schedule}</ScheduleTiming>
           <Schedule>Watering schedule</Schedule>
         </Info>
-        <Button value={props.value} onClick={props.handleDelete}>
-          <Icon value={props.value}>delete</Icon>
-        </Button>
+        <Info>
+          <Button value={props.value} onClick={props.handleDelete}>
+            <Icon>delete</Icon>
+          </Button>
+        </Info>
       </FlexContainer>
     </Card>
   );
