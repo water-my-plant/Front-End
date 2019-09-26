@@ -113,7 +113,7 @@ export default withFormik({
   validationSchema: yup.object().shape({
     plant_name: yup.string().required("Add plant name"),
     plant_species: yup.string().required("What's it's species?"),
-    water_schedule: yup.number().required("Make a Schedule!")
+    water_schedule: yup.string().required("Make a Schedule!")
   }),
   handleSubmit: (values, { setStatus }) => {
     // let addPlant = {
