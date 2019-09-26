@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { createBrowserHistory } from "history";
 
 import PlantCard from "./PlantCard";
 
@@ -29,6 +30,7 @@ const Card = styled.div`
 
 export default function Home() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   // get plant data from database
   useEffect(() => {
     axios
@@ -40,22 +42,23 @@ export default function Home() {
       .catch(error => {
         console.log(error);
       });
-  }, []);
+  }, [loading]);
 
   const handleDelete = event => {
     event.preventDefault();
     console.log(event.target.value);
-    // axios
-    //   .delete(
-    //     `https://water-my-plant-bw.herokuapp.com/api/plants/${event.target.value}`
-    //   )
-    //   .then(response => {
-    //     console.log(response.data);
-    //     setData(response.data);
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
+    axios
+      .delete(
+        `https://water-my-plant-bw.herokuapp.com/api/plants/${event.target.value}`
+      )
+      .then(response => {
+        console.log(response.data);
+        setData(response.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   if (!Array.isArray(data) || !data.length) {

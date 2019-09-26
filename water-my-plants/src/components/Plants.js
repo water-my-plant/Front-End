@@ -115,7 +115,7 @@ export default withFormik({
     plant_species: yup.string().required("What's it's species?"),
     water_schedule: yup.string().required("Make a Schedule!")
   }),
-  handleSubmit: (values, { setStatus }) => {
+  handleSubmit: (values, { props, setStatus, resetForm }) => {
     // let addPlant = {
     //   plant: values.plant,
     //   species: values.species,
@@ -126,6 +126,8 @@ export default withFormik({
       .then(response => {
         console.log(response.data);
         setStatus(response.data);
+        resetForm();
+        return props.history.push("/home");
       })
       .catch(error => {
         console.log("Error:", error);
