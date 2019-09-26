@@ -88,12 +88,12 @@ const SignUp = props => {
         {touched.password && errors.password && (
           <Error>{errors.password}</Error>
         )}
-        <Input type="text" name="password" placeholder="password" />
+        <Input type="password" name="password" placeholder="password" />
 
         {touched.password2 && errors.password2 && (
           <Error>{errors.password2.slice(49, 69)}</Error>
         )}
-        <Input type="text" name="password2" placeholder="confirm password" />
+        <Input type="password" name="password2" placeholder="confirm password" />
 
         {touched.termsOfService && errors.termsOfService && (
           <Error>{errors.termsOfService.slice(58, 96)}</Error>

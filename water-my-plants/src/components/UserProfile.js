@@ -117,8 +117,14 @@ export default props => {
   
   useEffect(() => {
     let key = decode(localStorage.token);
+    let url = `https://water-my-plant-bw.herokuapp.com/api/users/${key.sub}`
+    let config = {
+      headers: {
+        Authorization: localStorage.token
+      }
+    }
     axios
-      .get(`https://water-my-plant-bw.herokuapp.com/api/users/${key.sub}`)
+      .get(url, config)
       .then(res => {
         setData(res.data);
       })

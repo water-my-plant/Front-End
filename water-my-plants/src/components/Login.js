@@ -75,7 +75,7 @@ const Login = props => {
         {touched.password && errors.password && (
           <Error>{errors.password}</Error>
         )}
-        <Input type="text" name="password" placeholder="password" />
+        <Input type="password" name="password" placeholder="password" />
 
         <Button type="submit">Login</Button>
       </FormDiv>
