@@ -9,6 +9,7 @@ import Home from "./components/Home";
 import UserProfile from "./components/UserProfile";
 import NewPlant from "./components/Plants";
 // import UpdatePlant from './components/UpdatePlant';
+import PrivateRoute from './components/PrivateRoute'
 
 const Content = styled.div`
   margin-top: 120px;
@@ -21,9 +22,9 @@ function App() {
       <Content>
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
-        <Route path="/profile" component={UserProfile} />
-        <Route path="/home" component={Home} />
-        <Route path="/plants" component={NewPlant} />
+        <PrivateRoute path='/profile' component={UserProfile} />
+        <PrivateRoute path="/home" component={Home} />
+        <PrivateRoute path='/plants' component={NewPlant} />
       </Content>
     </div>
   );

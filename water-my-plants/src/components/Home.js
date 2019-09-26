@@ -82,7 +82,7 @@ export default function Home() {
             key={plant.id}
             name={plant.plant_name}
             species={plant.plant_species}
-            schedule={plant.watering_schedule}
+            schedule={plant.water_schedule}
             handleDelete={handleDelete}
           />
         );

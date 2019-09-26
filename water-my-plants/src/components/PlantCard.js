@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Icon from "@material-ui/core/Icon";
 
 const Card = styled.div`
   text-align: center;
@@ -71,7 +70,7 @@ const Button = styled.button`
   border: none;
   border-radius: 50%;
   margin: 10px 10px 20px;
-  padding: 10px;
+  padding: 15px;
   background-color: #fff;
   transition: all 0.3s ease-in;
   &:hover {
@@ -94,9 +93,11 @@ export default function PlantCard(props) {
           <Schedule>Watering schedule</Schedule>
         </Info>
         <Info>
-          <Button value={props.value} onClick={props.handleDelete}>
-            <Icon>delete</Icon>
-          </Button>
+          <Button
+            value={props.value}
+            onClick={props.handleDelete}
+            className="fas fa-trash fa-lg"
+          ></Button>
         </Info>
       </FlexContainer>
     </Card>
