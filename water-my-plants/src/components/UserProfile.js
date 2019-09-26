@@ -114,15 +114,15 @@ const Error = styled.p`
 
 export default props => {
   const [data, setData] = useState([]);
-  
-  useEffect(() => {
-    let key = decode(localStorage.token);
-    let url = `https://water-my-plant-bw.herokuapp.com/api/users/${key.sub}`
-    let config = {
-      headers: {
-        Authorization: localStorage.token
-      }
+  const [key] = useState(decode(localStorage.token))
+  const [url] = useState(`https://water-my-plant-bw.herokuapp.com/api/users/${key.sub}`)
+  const [config] = useState({
+    headers: {
+      Authorization: localStorage.token
     }
+  })
+
+  useEffect(() => {
     axios
       .get(url, config)
       .then(res => {
@@ -168,7 +168,8 @@ export default props => {
           axios
             .put(
               `https://water-my-plant-bw.herokuapp.com/api/users/${key.sub}`,
-              values
+              values,
+              config
             )
             .then(res => {
               setData(res.data);
