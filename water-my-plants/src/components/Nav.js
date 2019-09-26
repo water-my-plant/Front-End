@@ -18,7 +18,6 @@ const NavBar = styled.nav`
 `;
 
 export default function Nav(props) {
-  let history = createBrowserHistory({forceRefresh: true})
   return (
     <NavBar>
       <NavLink to="/home" className="item">
@@ -37,8 +36,11 @@ export default function Nav(props) {
         Sign Up
       </NavLink>
       <button onClick={() => {
+        let history = createBrowserHistory({forceRefresh: true})
         localStorage.removeItem('token')
-        history.push('/login')
+        if(history.location.pathname !== '/signup' && history.location.pathname !== '/login') {
+          history.push('/login')
+        }
         }}>
           Log Out
         </button>
