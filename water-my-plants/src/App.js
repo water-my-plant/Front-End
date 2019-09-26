@@ -17,19 +17,15 @@ const Content = styled.div`
 `;
 
 function App() {
-  // const token = localStorage.getItem("token");
-  // const expired = decode(token).exp < Date.now() / 1000;
-  // console.log(decode(token));
-
   return (
     <div className="App">
       <Nav />
       <Content>
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
-        <Route path="/profile" component={UserProfile} />
-        <PrivateRoute authenticated={true} path="/home" component={Home} />
-        <Route path="/plants" component={NewPlant} />
+        <PrivateRoute path='/profile' component={UserProfile} />
+        <PrivateRoute path="/home" component={Home} />
+        <PrivateRoute path='/plants' component={NewPlant} />
       </Content>
     </div>
   );

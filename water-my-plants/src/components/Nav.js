@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { createBrowserHistory } from 'history'
 import styled from "styled-components";
 
 const NavBar = styled.nav`
@@ -16,7 +17,8 @@ const NavBar = styled.nav`
   align-items: center;
 `;
 
-export default function Nav() {
+export default function Nav(props) {
+  let history = createBrowserHistory({forceRefresh: true})
   return (
     <NavBar>
       <NavLink to="/home" className="item">
@@ -34,6 +36,12 @@ export default function Nav() {
       <NavLink to="/signup" className="item">
         Sign Up
       </NavLink>
+      <button onClick={() => {
+        localStorage.removeItem('token')
+        history.push('/login')
+        }}>
+          Log Out
+        </button>
     </NavBar>
   );
 }
