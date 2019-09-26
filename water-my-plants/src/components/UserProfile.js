@@ -65,10 +65,12 @@ const Error = styled.p`
 const UserProfile = props => {
   const { errors, touched } = props;
   const [data, setData] = useState([]);
+  const [deleted, setDeleted] = useState(false);
 
   useEffect(() => {
     // const token = localStorage.getItem("token");
     // setData(decode(token));
+    console.log(data);
     let key = decode(localStorage.token);
     axios
       .get(`https://water-my-plant-bw.herokuapp.com/api/users/${key.sub}`)
@@ -79,7 +81,7 @@ const UserProfile = props => {
       .catch(error => {
         console.log(error);
       });
-  }, []);
+  }, [deleted]);
 
   //   console.log(data);
 
@@ -123,7 +125,6 @@ export default withFormik({
   validateOnBlur: false,
   handleSubmit: (values, { props, resetForm }) => {
     let key = decode(localStorage.token);
-    // console.log(key);
     axios
       .put(
         `https://water-my-plant-bw.herokuapp.com/api/users/${key.sub}`,
@@ -131,7 +132,8 @@ export default withFormik({
       )
       .then(res => {
         props.setData(res.data);
-        console.log(props);
+        props.setDeleted(!props.deleted);
+        console.log(props.deleted);
         resetForm();
         props.location.reload();
       })
