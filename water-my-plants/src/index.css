@@ -9,8 +9,14 @@ body {
 .item {
   color          : #fff;
   text-decoration: none;
+  font-size      : 1rem;
+  font-weight    : 700;
+  text-transform : uppercase;
+  margin         : 0;
+  padding        : 15px 10px 25px;
 }
 
 .active {
-  color: #D4D4AA;
+  color           : #666633;
+  background-color: #fff;
 }

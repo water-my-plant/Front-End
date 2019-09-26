@@ -1,10 +1,20 @@
 // user can change their username and phone number
 import React, { useState, useEffect } from "react";
-import { withFormik, Form, Field } from "formik";
+import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import styled from "styled-components";
 import * as decode from "jwt-decode";
+
+const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  padding: 1.5rem 0;
+  margin: 3rem auto;
+  background-color: #d4d4aa;
+  color: #000;
+`;
 
 const FormDiv = styled(Form)`
   display: flex;
@@ -15,11 +25,51 @@ const FormDiv = styled(Form)`
   background-color: #d4d4aa;
   color: #000;
 `;
+
 const Heading = styled.h1`
   font-size: 3rem;
   font-weight: 300;
   text-align: center;
 `;
+
+const SubHeading = styled.h2`
+  font-size: 2.5rem;
+  font-weight: 700;
+  opacity: 0.5;
+  text-transform: uppercase;
+  margin: 20px 0;
+  text-align: center;
+`;
+
+const FlexContainer = styled.div`
+  @media (min-width: 600px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;
+
+const Info = styled.div`
+  flex: 1;
+  margin: 20px 0;
+  text-align: center;
+  line-height: 1rem;
+`;
+
+const Item = styled.h3`
+  font-size: 0.75rem;
+  font-weight: 700;
+  opacity: 0.5;
+  text-transform: uppercase;
+  margin: 0;
+`;
+
+const Value = styled.span`
+  font-size: 1.17rem;
+  font-weight: 500;
+`;
+
 const Input = styled(Field)`
   margin: 1rem auto;
   width: 70%;
@@ -62,18 +112,14 @@ const Error = styled.p`
   z-index: 3;
 `;
 
-const UserProfile = props => {
-  const { errors, touched } = props;
+export default props => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // const token = localStorage.getItem("token");
-    // setData(decode(token));
     let key = decode(localStorage.token);
     axios
       .get(`https://water-my-plant-bw.herokuapp.com/api/users/${key.sub}`)
       .then(res => {
-        console.log(res.data);
         setData(res.data);
       })
       .catch(error => {
@@ -81,62 +127,78 @@ const UserProfile = props => {
       });
   }, []);
 
-  //   console.log(data);
-
   return (
     <>
-      <Heading>Profile</Heading>
-      <div>
-        <p>
-          username: {data.username}, phone number: {data.phonenumber}
-        </p>
-      </div>
-      <FormDiv>
-        {touched.username && errors.username && (
-          <Error>{errors.username}</Error>
-        )}
-        <Input type="text" name="username" placeholder="Username" />
+      <Heading>Hello, {data.username}!</Heading>
+      <Div>
+        <SubHeading>User Profile</SubHeading>
+        <FlexContainer>
+          <Info>
+            <Value>{data.fullname}</Value>
+            <Item>Name</Item>
+          </Info>
+          <Info>
+            <Value>{data.username}</Value>
+            <Item>Username</Item>
+          </Info>
+          <Info>
+            <Value>{data.phonenumber}</Value>
+            <Item>Phone Number</Item>
+          </Info>
+        </FlexContainer>
+      </Div>
 
-        {touched.phonenumber && errors.phonenumber && (
-          <Error>{errors.phonenumber}</Error>
-        )}
-        <Input type="text" name="phonenumber" placeholder="Phone Number" />
+      <Formik
+        initialValues={{ username: "", phonenumber: "" }}
+        validationSchema={yup.object().shape({
+          username: yup.string().required(),
+          phonenumber: yup.string().required()
+        })}
+        validateOnChange={false}
+        validateOnBlur={false}
+        onSubmit={(values, { resetForm }) => {
+          let key = decode(localStorage.token);
 
-        <Button type="submit">Update</Button>
-      </FormDiv>
+          axios
+            .put(
+              `https://water-my-plant-bw.herokuapp.com/api/users/${key.sub}`,
+              values
+            )
+            .then(res => {
+              setData(res.data);
+              resetForm();
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        }}
+        render={props => (
+          <FormDiv onSubmit={props.handleSubmit}>
+            <SubHeading>Update Profile</SubHeading>
+            {props.touched.username && props.errors.username && (
+              <Error>{props.errors.username}</Error>
+            )}
+            <Input
+              type="text"
+              name="username"
+              placeholder="Username"
+              onChange={props.handleChange}
+            />
+
+            {props.touched.phonenumber && props.errors.phonenumber && (
+              <Error>{props.errors.phonenumber}</Error>
+            )}
+            <Input
+              type="text"
+              name="phonenumber"
+              placeholder="Phone Number"
+              onChange={props.handleChange}
+            />
+
+            <Button type="submit">Update</Button>
+          </FormDiv>
+        )}
+      />
     </>
   );
 };
-
-export default withFormik({
-  mapPropsToValues: values => {
-    return {
-      username: values.username || "",
-      phonenumber: values.phonenumber || ""
-    };
-  },
-  validationSchema: yup.object().shape({
-    username: yup.string().required(),
-    phonenumber: yup.string().required()
-  }),
-  validateOnChange: false,
-  validateOnBlur: false,
-  handleSubmit: (values, { props, resetForm }) => {
-    let key = decode(localStorage.token);
-    // console.log(key);
-    axios
-      .put(
-        `https://water-my-plant-bw.herokuapp.com/api/users/${key.sub}`,
-        values
-      )
-      .then(res => {
-        props.setData(res.data);
-        console.log(props);
-        resetForm();
-        props.location.reload();
-      })
-      .catch(err => {
-        return err.response;
-      });
-  }
-})(UserProfile);
