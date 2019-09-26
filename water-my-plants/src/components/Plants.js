@@ -1,9 +1,9 @@
 // create watering schedule
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
-import { withFormik, Form, Field } from 'formik';
-import * as yup from 'yup';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import axios from "axios";
+import { withFormik, Form, Field } from "formik";
+import * as yup from "yup";
 
 const PlantForm = styled(Form)`
   display: flex;
@@ -71,26 +71,30 @@ const NewPlant = ({ errors, touched, status }) => {
     if (status) {
       addNewPlant([...newPlant, status]);
     }
-  }, [newPlant, status]);
+  }, [status]);
 
   return (
     <>
       <Heading>Add a Plant!</Heading>
       <PlantForm>
-        {touched.plant && errors.plant && (
-          <Error className="error">{errors.plant}</Error>
+        {touched.plant_name && errors.plant_name && (
+          <Error className="error">{errors.plant_name}</Error>
         )}
-        <FieldInput type="text" name="plant" placeholder="Plant Name" />
+        <FieldInput type="text" name="plant_name" placeholder="Plant Name" />
 
-        {touched.species && errors.species && (
-          <Error className="error">{errors.species}</Error>
+        {touched.plant_species && errors.plant_species && (
+          <Error className="error">{errors.plant_species}</Error>
         )}
-        <FieldInput type="text" name="species" placeholder="Species" />
+        <FieldInput type="text" name="plant_species" placeholder="Species" />
 
-        {touched.water && errors.water && (
-          <Error className="error">{errors.water}</Error>
+        {touched.water_schedule && errors.water_schedule && (
+          <Error className="error">{errors.water_schedule}</Error>
         )}
-        <FieldInput type="text" name="water" placeholder="Water Schedule" />
+        <FieldInput
+          type="text"
+          name="water_schedule"
+          placeholder="Water Schedule"
+        />
 
         <Button type="submit">Submit!</Button>
       </PlantForm>
@@ -101,25 +105,30 @@ const NewPlant = ({ errors, touched, status }) => {
 export default withFormik({
   mapPropsToValues: values => {
     return {
-      plant: values.plant || '',
-      species: values.species || '',
-      water: values.water || ''
+      plant_name: values.plant_name || "",
+      plant_species: values.plant_species || "",
+      water_schedule: values.water_schedule || ""
     };
   },
   validationSchema: yup.object().shape({
-    plant: yup.string().required('Add plant name'),
-    species: yup.string().required("What's it's species?"),
-    water: yup.string().required('Make a Schedule!')
+    plant_name: yup.string().required("Add plant name"),
+    plant_species: yup.string().required("What's it's species?"),
+    water_schedule: yup.string().required("Make a Schedule!")
   }),
   handleSubmit: (values, { setStatus }) => {
+    // let addPlant = {
+    //   plant: values.plant,
+    //   species: values.species,
+    //   water_schedule: values.water_schedule
+    // };
     axios
-      .post('https://water-my-plant-bw.herokuapp.com/api/plants/', values)
+      .post("https://water-my-plant-bw.herokuapp.com/api/plants", values)
       .then(response => {
         console.log(response.data);
         setStatus(response.data);
       })
       .catch(error => {
-        console.log('Error:', error);
+        console.log("Error:", error);
       });
   }
 })(NewPlant);

@@ -1,6 +1,5 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import * as decode from "jwt-decode";
 import styled from "styled-components";
 import Nav from "./components/Nav.js";
 
