@@ -15,10 +15,6 @@ const Content = styled.div`
 `;
 
 function App() {
-  // const token = localStorage.getItem("token");
-  // const expired = decode(token).exp < Date.now() / 1000;
-  // console.log(decode(token));
-
   return (
     <div className="App">
       <Nav />

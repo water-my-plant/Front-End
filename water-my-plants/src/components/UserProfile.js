@@ -68,9 +68,6 @@ const UserProfile = props => {
   const [deleted, setDeleted] = useState(false);
 
   useEffect(() => {
-    // const token = localStorage.getItem("token");
-    // setData(decode(token));
-    console.log(data);
     let key = decode(localStorage.token);
     axios
       .get(`https://water-my-plant-bw.herokuapp.com/api/users/${key.sub}`)
