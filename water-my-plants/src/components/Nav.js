@@ -47,7 +47,7 @@ export default function Nav(props) {
         let history = createBrowserHistory({forceRefresh: true})
         localStorage.removeItem('token')
         if(history.location.pathname !== '/signup' && history.location.pathname !== '/login') {
-          history.push('/login')
+          history.push('/')
         }
         }}>
           Log Out
