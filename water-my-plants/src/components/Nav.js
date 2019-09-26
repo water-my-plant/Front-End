@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { createBrowserHistory } from 'history'
 import styled from "styled-components";
 
 const NavBar = styled.nav`
@@ -23,7 +24,7 @@ const Heading = styled.h1`
   color: #fff;
 `;
 
-export default function Nav() {
+export default function Nav(props) {
   return (
     <NavBar>
       <Heading>Water My Plant</Heading>
@@ -42,6 +43,15 @@ export default function Nav() {
       <NavLink to="/signup" className="item">
         Sign Up
       </NavLink>
+      <button onClick={() => {
+        let history = createBrowserHistory({forceRefresh: true})
+        localStorage.removeItem('token')
+        if(history.location.pathname !== '/signup' && history.location.pathname !== '/login') {
+          history.push('/login')
+        }
+        }}>
+          Log Out
+        </button>
     </NavBar>
   );
 }
