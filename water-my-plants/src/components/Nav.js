@@ -13,12 +13,20 @@ const NavBar = styled.nav`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: flex-end;
+`;
+
+const Heading = styled.h1`
+  font-size: 2rem;
+  font-weight: 300;
+  text-align: center;
+  color: #fff;
 `;
 
 export default function Nav() {
   return (
     <NavBar>
+      <Heading>Water My Plant</Heading>
       <NavLink to="/home" className="item">
         My Plants
       </NavLink>
