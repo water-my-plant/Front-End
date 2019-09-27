@@ -1,20 +1,21 @@
 import { Form, Field } from "formik";
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const FormDiv = styled(Form)`
-display: flex;
-flex-direction: column;
-width: 70%;
-padding: 1.5rem 0;
-margin: 3rem auto;
-background-color: #d4d4aa;
-color: #000;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  padding: 1.5rem 0;
+  margin: 3rem auto;
+  background-color: #d4d4aa;
+  color: #000;
 `;
 
 export const Heading = styled.h1`
-font-size: 3rem;
-font-weight: 300;
-text-align: center;
+  font-size: 3rem;
+  font-weight: 300;
+  text-align: center;
+  padding-top: 4rem;
 `;
 
 export const Input = styled(Field)`
@@ -48,14 +49,14 @@ export const Button = styled.button`
 `;
 
 export const Error = styled.p`
-width: 70%;
-height: 1.5rem;
-font-size: 0.75rem;
-text-align: center;
-color: #721c24;
-background-color: #f8d7da;
-border-color: #f5c6cb;
-padding: 5px 10px;
-margin: -8px auto -1rem;
-z-index: 3;
+  width: 70%;
+  height: 1.5rem;
+  font-size: 0.75rem;
+  text-align: center;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  padding: 5px 10px;
+  margin: -8px auto -1rem;
+  z-index: 3;
 `;
