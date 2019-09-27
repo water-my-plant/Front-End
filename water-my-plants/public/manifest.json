@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Water My Plants",
+  "name": "Water My Plants App",
+  "description": "Water My Plants helps users create a watering schedule to ensure all their plants are healthy and happy.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -13,13 +14,13 @@
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "logo458.png",
       "type": "image/png",
-      "sizes": "512x512"
-    }	    
+      "sizes": "458x458"
+    }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#595959",
   "background_color": "#ffffff"
 }
