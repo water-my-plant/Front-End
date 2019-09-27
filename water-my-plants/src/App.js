@@ -21,7 +21,7 @@ function App() {
     <div className="App">
       <Nav />
       <Content>
-        <Route path="/" component={Welcome} />
+        <Route exact path="/" component={Welcome} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
         <PrivateRoute path='/profile' component={UserProfile} />
