@@ -142,7 +142,7 @@ export default function Nav() {
               history.location.pathname !== "/signup" &&
               history.location.pathname !== "/login"
             ) {
-              history.push("/login");
+              history.push("/");
             }
           }}
         >
