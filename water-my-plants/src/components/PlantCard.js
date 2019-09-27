@@ -16,7 +16,7 @@ const Card = styled.div`
 `;
 
 const FlexContainer = styled.div`
-  @media (min-width: 600px) {
+  @media (min-width: 700px) {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
