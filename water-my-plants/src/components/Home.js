@@ -6,9 +6,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 import PlantCard from "./PlantCard";
-import {
-  Heading
-} from './StyledComponents'
+import { Heading } from "./StyledComponents";
 
 const Card = styled.div`
   text-align: center;
@@ -41,6 +39,7 @@ export default function Home() {
   }, [loading]);
 
   const handleDelete = event => {
+    setLoading(true);
     event.preventDefault();
     console.log(event.target.value);
     axios

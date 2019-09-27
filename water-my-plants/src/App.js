@@ -8,12 +8,14 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import UserProfile from "./components/UserProfile";
 import NewPlant from "./components/Plants";
-// import UpdatePlant from './components/UpdatePlant';
-import PrivateRoute from './components/PrivateRoute'
-import Welcome from './components/Welcome'
+import PrivateRoute from "./components/PrivateRoute";
+import Welcome from "./components/Welcome";
 
 const Content = styled.div`
-  margin-top: 120px;
+  margin-top: 170px;
+  @media (min-width: 700px) {
+    margin-top: 120px;
+  }
 `;
 
 function App() {
@@ -24,9 +26,9 @@ function App() {
         <Route exact path="/" component={Welcome} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
-        <PrivateRoute path='/profile' component={UserProfile} />
+        <PrivateRoute path="/profile" component={UserProfile} />
         <PrivateRoute path="/home" component={Home} />
-        <PrivateRoute path='/plants' component={NewPlant} />
+        <PrivateRoute path="/plants" component={NewPlant} />
       </Content>
     </div>
   );
