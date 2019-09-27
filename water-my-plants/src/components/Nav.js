@@ -20,7 +20,9 @@ const NavBar = styled.nav`
   }
 `;
 
-const Heading = styled.h1`
+const Heading = styled(NavLink)`
+  -webkit-text-decoration: none;
+  text-decoration: none;
   order: 2;
   font-size: 1.2rem;
   font-weight: 300;
@@ -123,7 +125,9 @@ const Button = styled.button`
 export default function Nav() {
   return (
     <NavBar>
-      <Heading>Water My Plant</Heading>
+      <Heading exact to="/">
+        Water My Plant
+      </Heading>
       <NavLinks>
         <MainLink to="/home">My Plants</MainLink>
         <MainLink to="/plants">Add A Plant</MainLink>
@@ -142,7 +146,7 @@ export default function Nav() {
               history.location.pathname !== "/signup" &&
               history.location.pathname !== "/login"
             ) {
-              history.push("/login");
+              history.push("/");
             }
           }}
         >
