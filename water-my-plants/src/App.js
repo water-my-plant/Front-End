@@ -10,6 +10,7 @@ import UserProfile from "./components/UserProfile";
 import NewPlant from "./components/Plants";
 // import UpdatePlant from './components/UpdatePlant';
 import PrivateRoute from './components/PrivateRoute'
+import Welcome from './components/Welcome'
 
 const Content = styled.div`
   margin-top: 120px;
@@ -20,6 +21,7 @@ function App() {
     <div className="App">
       <Nav />
       <Content>
+        <Route path="/" component={Welcome} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
         <PrivateRoute path='/profile' component={UserProfile} />
