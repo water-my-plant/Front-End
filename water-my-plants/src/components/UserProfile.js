@@ -114,13 +114,15 @@ const Error = styled.p`
 
 export default props => {
   const [data, setData] = useState([]);
-  const [key] = useState(decode(localStorage.token))
-  const [url] = useState(`https://water-my-plant-bw.herokuapp.com/api/users/${key.sub}`)
+  const [key] = useState(decode(localStorage.token));
+  const [url] = useState(
+    `https://water-my-plant-bw.herokuapp.com/api/users/${key.sub}`
+  );
   const [config] = useState({
     headers: {
       Authorization: localStorage.token
     }
-  })
+  });
 
   useEffect(() => {
     axios
