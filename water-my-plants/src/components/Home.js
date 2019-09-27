@@ -30,7 +30,6 @@ export default function Home() {
     axios
       .get(`https://water-my-plant-bw.herokuapp.com/api/plants`)
       .then(response => {
-        console.log(response.data);
         setData(response.data);
       })
       .catch(error => {

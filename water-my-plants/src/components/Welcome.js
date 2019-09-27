@@ -1,22 +1,22 @@
-import React from 'react'
-import styled from 'styled-components'
-import image from '../assets/sapling.png'
+import React from "react";
+import styled from "styled-components";
+import image from "../assets/sapling.png";
+import { Heading } from "./StyledComponents";
 
 const WelcomeDiv = styled.div`
-    margin: 0 auto;
-    padding-top: 5rem;
-    text-align: center;
-`
+  margin: 0 auto;
+  text-align: center;
+`;
 const Image = styled.img`
-    height: 20rem;
-`
+  height: 20rem;
+`;
 
 export default function Welcome() {
-    return (
-        <WelcomeDiv>
-            <h1>Welcome</h1>
-            <h2>Let's Grow Your Garden</h2>
-            <Image src={image} />
-        </WelcomeDiv>
-    )
+  return (
+    <WelcomeDiv>
+      <Heading>Welcome</Heading>
+      <h2>Let's Grow Your Garden</h2>
+      <Image src={image} />
+    </WelcomeDiv>
+  );
 }

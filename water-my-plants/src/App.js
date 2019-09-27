@@ -12,9 +12,9 @@ import PrivateRoute from "./components/PrivateRoute";
 import Welcome from "./components/Welcome";
 
 const Content = styled.div`
-  margin-top: 170px;
+  margin-top: 150px;
   @media (min-width: 700px) {
-    margin-top: 120px;
+    margin-top: 100px;
   }
 `;
 
