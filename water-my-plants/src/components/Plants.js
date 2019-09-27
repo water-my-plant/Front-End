@@ -97,6 +97,10 @@ const NewPlant = ({ errors, touched, status }) => {
         />
 
         <Button type="submit">Submit!</Button>
+
+        {newPlant.map(plants => (
+          <div>Keep Your Garden Growing!</div>
+        ))}
       </PlantForm>
     </>
   );
