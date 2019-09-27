@@ -4,15 +4,11 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { createBrowserHistory } from "history";
 
 import PlantCard from "./PlantCard";
-
-const Heading = styled.h1`
-  font-size: 3rem;
-  font-weight: 300;
-  text-align: center;
-`;
+import {
+  Heading
+} from './StyledComponents'
 
 const Card = styled.div`
   text-align: center;
