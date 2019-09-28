@@ -2,19 +2,24 @@ import { Form, Field } from "formik";
 import styled from 'styled-components'
 
 export const FormDiv = styled(Form)`
-display: flex;
-flex-direction: column;
-width: 70%;
-padding: 1.5rem 0;
-margin: 3rem auto;
-background-color: #d4d4aa;
-color: #000;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  padding: 1.5rem 0;
+  margin: 3rem auto;
+  background-color: #d4d4aa;
+  color: #000;
+  border: 1px solid black;
+  border-radius: .5rem;
+  -webkit-box-shadow:0 1rem 1rem black;
+  -moz-box-shadow:0 1rem 1rem black;
+  box-shadow:0 1rem 1rem black;
 `;
 
 export const Heading = styled.h1`
-font-size: 3rem;
-font-weight: 300;
-text-align: center;
+  font-size: 3rem;
+  font-weight: 300;
+  text-align: center;
 `;
 
 export const Input = styled(Field)`
