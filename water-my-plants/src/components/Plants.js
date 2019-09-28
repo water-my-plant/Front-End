@@ -4,13 +4,7 @@ import axios from "axios";
 import { withFormik } from "formik";
 import * as yup from "yup";
 
-import {
-  FormDiv,
-  Heading,
-  Input,
-  Button,
-  Error
-} from './StyledComponents'
+import { FormDiv, Heading, Input, Button, Error } from "./StyledComponents";
 
 const NewPlant = ({ errors, touched, status }) => {
   const [newPlant, addNewPlant] = useState([]);
@@ -38,17 +32,9 @@ const NewPlant = ({ errors, touched, status }) => {
         {touched.water_schedule && errors.water_schedule && (
           <Error className="error">{errors.water_schedule}</Error>
         )}
-        <Input
-          type="text"
-          name="water_schedule"
-          placeholder="Water Schedule"
-        />
+        <Input type="text" name="water_schedule" placeholder="Water Schedule" />
 
         <Button type="submit">Submit!</Button>
-
-        {newPlant.map(plants => (
-          <div>Keep Your Garden Growing!</div>
-        ))}
       </FormDiv>
     </>
   );
@@ -68,11 +54,6 @@ export default withFormik({
     water_schedule: yup.string().required("Make a Schedule!")
   }),
   handleSubmit: (values, { props, setStatus, resetForm }) => {
-    // let addPlant = {
-    //   plant: values.plant,
-    //   species: values.species,
-    //   water_schedule: values.water_schedule
-    // };
     axios
       .post("https://water-my-plant-bw.herokuapp.com/api/plants", values)
       .then(response => {
