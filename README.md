@@ -14,26 +14,45 @@ https://docs.google.com/document/d/1uPou8NvxiJYb7TMMDNwWJBSJxAp5XLfhkO0G32hqnkk/
 
 - 0.0.1
 
-  - Work in progress
+  - Login/Signup Pages
+  - Plant Page (create watering schedule for a plant)
+  - Home Page (list of plants, delete a plant)
+  - User Profile Page (edit username and phone number)
 
 ## Meta
 
 Created by:
-UI Team -
-Ariana Shackelford
-Ryan Smith
-Nick Verdinia
 
-Front End Team -
-Kyle Leonard
-Ian Carreras
-Ruth Poliakon
+- UI Team
 
-Back End -
-Melvin Peepers
+  - Ariana Shackelford
+  - Ryan Smith
+  - Nick Verdinia
 
-Project Lead -
-Harrison Brock
+- Front End Team
+
+  - Kyle Leonard
+  - Ian Carreras
+  - Ruth Poliakon
+
+- Back End
+
+  - Melvin Peepers
+
+- Project Lead
+
+  - Harrison Brock
+
+## Dependencies
+
+- material-ui v4.4.3
+- yup v0.27.0
+- axios v 0.19.0
+- formik v 1.5.8
+- jwt-decode v2.2.0
+- react-router-dom v5.0.1
+- react-scripts v3.1.1
+- styled-components v4.3.2
 
 ## Contributing
 
