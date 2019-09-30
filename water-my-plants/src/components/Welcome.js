@@ -8,7 +8,7 @@ const WelcomeDiv = styled.div`
   text-align: center;
 `;
 const Image = styled.img`
-  height: 20rem;
+  max-width: 90%;
 `;
 
 export default function Welcome() {

@@ -9,6 +9,11 @@ export const FormDiv = styled(Form)`
   margin: 3rem auto;
   background-color: #d4d4aa;
   color: #000;
+  border: 1px solid black;
+  border-radius: .5rem;
+  -webkit-box-shadow:0 1rem 1rem black;
+  -moz-box-shadow:0 1rem 1rem black;
+  box-shadow:0 1rem 1rem black;
 `;
 
 export const Heading = styled.h1`

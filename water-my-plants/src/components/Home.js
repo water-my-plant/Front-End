@@ -40,13 +40,13 @@ export default function Home() {
   const handleDelete = event => {
     setLoading(true);
     event.preventDefault();
-    console.log(event.target.value);
+    // console.log(event.target.value);
     axios
       .delete(
         `https://water-my-plant-bw.herokuapp.com/api/plants/${event.target.value}`
       )
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         setData(response.data);
         setLoading(false);
       })
