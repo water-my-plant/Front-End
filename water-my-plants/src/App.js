@@ -3,7 +3,13 @@ import { Route } from "react-router-dom";
 import styled from "styled-components";
 import Nav from "./components/Nav.js";
 
-
+import SignUp from "./components/SignUp";
+import Login from "./components/Login";
+import Home from "./components/Home";
+import UserProfile from "./components/UserProfile";
+import NewPlant from "./components/Plants";
+import PrivateRoute from "./components/PrivateRoute";
+import Welcome from "./components/Welcome";
 
 const Content = styled.div`
   margin-top: 150px;
